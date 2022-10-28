@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  wish:
+    build:
+      context: ./wish
+      dockerfile: wish.Dockerfile
+    image: shopnow/wish:service
+    restart: always
+    environment:
+      AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY : ${AWS_SECRET_ACCESS_KEY}
+      REGION_NAME : ${REGION_NAME}
+      DATABASE_TABLE : shopnow-wishlist
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "2001:2001"
+
+  cart:
+    build:
+      context: ./cart
+      dockerfile: cart.Dockerfile
+    image: shopnow/cart:service
+    restart: always
+    environment:
+      AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY : ${AWS_SECRET_ACCESS_KEY}
+      REGION_NAME : ${REGION_NAME}
+      DATABASE_TABLE : shopnow-cart
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "4001:4001"
+
+  product:
+    build:
+      context: ./product
+      dockerfile: product.Dockerfile
+    image: shopnow/product:service
+    restart: always
+    environment:
+      dbURL: ${dbURL}
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5001:5001"
+
+  order:
+    build:
+      context: ./order
+      dockerfile: order.Dockerfile
+    image: shopnow/order:service
+    restart: always
+    environment:
+      dbURL: ${dbURL}
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "3001:3001"
