@@ -23,6 +23,8 @@ const Navbar = () => {
           setCartItems(data.Item.numOfItems); 
         }
       });
+    }else{
+      return navigate("/product");
     }
   }, [navigate]);
 
