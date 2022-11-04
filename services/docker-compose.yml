@@ -5,7 +5,7 @@ services:
     build:
       context: ./wish
       dockerfile: wish.Dockerfile
-    image: shopnow/wish:service
+    image: jeffvindersingh/wish:service
     restart: always
     environment:
       AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
@@ -20,7 +20,7 @@ services:
     build:
       context: ./cart
       dockerfile: cart.Dockerfile
-    image: shopnow/cart:service
+    image: jeffvindersingh/cart:service
     restart: always
     environment:
       AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
@@ -35,7 +35,7 @@ services:
     build:
       context: ./product
       dockerfile: product.Dockerfile
-    image: shopnow/product:service
+    image: jeffvindersingh/product:service
     restart: always
     environment:
       dbURL: ${dbURL}
@@ -47,7 +47,7 @@ services:
     build:
       context: ./order
       dockerfile: order.Dockerfile
-    image: shopnow/order:service
+    image: jeffvindersingh/order:service
     restart: always
     environment:
       dbURL: ${dbURL}
